@@ -1,0 +1,18 @@
+.tab {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 50px;
+	background-color: #f0f0f0;
+}
+.tab .box {
+	float: left;
+	width: 33.3%;
+	line-height: 50px;
+	text-align: center;
+	color: ##222124;;
+}
+.tab .box:hover {
+	background-color: #fff;
+}
