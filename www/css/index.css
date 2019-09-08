@@ -1,1 +1,73 @@
-
+.header {
+}
+.header .search {
+	height: 30px;
+	margin: 10px;
+	
+}
+.header .search input {
+	display: block;
+	width: 100%;
+	height: 25px;
+	font-size: 12px;
+	border: none;
+	border-radius: 5px;
+	background-color: #f0f0f0;
+}
+.header .header-nav {
+	margin: 10px;
+}
+.header .header-nav .nav-item {
+	display: inline-block;
+	margin-right: 16%;
+	height: 20px;
+	color: #95908F;
+}
+.nav-item-active {
+	border-bottom: 2px solid #FF2A00;
+}
+.banner {
+	overflow: hidden;
+}
+.banner img {
+	display: block;
+	float: left;
+	height: 200px;
+}
+.article-list {
+	border-top: 20px solid #f0f0f0;
+	color: #95908F;
+}
+.article-list .article {
+	margin: 10px;
+	cursor: pointer;
+}
+.article-list .artical-info {
+	border-bottom: 2px solid #f0f0f0;
+}
+.article-list .article .title {
+	font-size: 16px;
+}
+.article-list .article .attract {
+	font-size: 12px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+	margin-bottom: 5px;
+}
+.article-list .article .artical-info {
+	display: flex;
+	padding-bottom: 5px;
+}
+.article-list .article .artical-info .author-avator {
+	width: 20px;
+	height: 20px;
+}
+.article-list .article .artical-info span {
+	display: inline-block;
+	height: 20px;
+	margin: 0 10px 0 8px;
+	font-size: 12px;
+	line-height: 20px;
+}

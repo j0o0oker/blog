@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/reset.css">
+		<link rel="stylesheet" href="../css/common.css">
+		<link rel="stylesheet" href="../css/index.css">
+	</head>
+	<body>
+		<div class="header">
+			<div class="search">
+				<input type="text" placeholder="搜索博文和用户">
+			</div>
+			<ul class="header-nav">
+				<li class="nav-item nav-item-active">推荐</li>
+				<li class="nav-item">关注</li>
+				<li class="nav-item">待定</li>
+				<li class="nav-item">待定</li>
+			</ul>
+		</div>
+		<div class="banner">
+			<img width="100%" src="../images/banner/1.jpg" alt="">
+		<!-- 	<img width="100%" src="../images/banner/2.jpg" alt="">
+			<img width="100%" src="../images/banner/3.jpg" alt="">
+			<img width="100%" src="../images/banner/4.jpg" alt="">
+			<img width="100%" src="../images/banner/5.jpg" alt="">
+			<img width="100%" src="../images/banner/6.jpg" alt=""> -->
+		</div>
+		<div class="article-list">
+			<% for(let i =0;i<user_data.length;i++){%>
+			<li class="article">
+				<span class="title"><%= artical_data[i].title%></span>
+				<a href="/artical?id=<%= artical_data[i].author%>">
+					<p class="attract"><%= artical_data[i].attract%></p>
+				</a>
+				
+				<div class="artical-info">
+					<img class="author-avator" src="<%= user_data[i].avator_src %>" alt="">
+					<span class="author-id"><%= user_data[i].username %></span>
+					<span class="publish-time">时间</span>
+					<span class="watch-times">查看数</span>
+					<span class="comment-times">评论数</span>
+				</div>
+			</li>
+			<% } %>
+		</div>
+		<div class="tab">
+			<a class="home box" href="/index">首页</a>
+			<a class="write box">发表</a>
+			<a class="me box" href="/me">我的</a>
+		</div>
+	</body>
+</html>
