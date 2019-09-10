@@ -12,14 +12,14 @@
 			<% if(user_data == false ) { %>
 			<img class="avator" src="" alt="">
 			<div class="user_info">
-				<span class="username"><a href="login.html">您还没有登录/注册</a></span>
+				<span class="username"><a href="/login">您还没有登录/注册</a></span>
 				<span class="attention">关注：0</span>
 				<span class="fans">粉丝：0</span>
 			</div>
 			<% } else { %>
 			<img class="avator" src="<%= user_data[0].avator_src%>" alt="">
 			<div class="user_info">
-				<span class="username"><a href="login.html"><%= user_data[0].username%></a></span>
+				<span class="username"><a href='/login'><%= user_data[0].username%></a></span>
 				<span class="attention">关注：0</span>
 				<span class="fans">粉丝：0</span>
 			</div>

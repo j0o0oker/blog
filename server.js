@@ -3,17 +3,18 @@ const mysql = require('mysql');
 const consolidate = require('consolidate');
 const readStaticFile = require('express-static');
 const cookieParser = require('cookie-parser');
-const cookieSession = require('cookie-session');
+const expressSession = require('express-session');
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const URL = require('url');
+// const expressRoute = require('express-route');
 
 
 
 // 创建服务
 let server = express();
 // 监听
-server.listen(8081);
+server.listen(8081); 
 
 
 
@@ -22,7 +23,15 @@ server.use(cookieParser('dwefwwfwefwefw'));
 
 // 使用session
 
-server.use(cookieSession({name: 'sess_id', keys:'sww', maxAge: 20*3600*1000}));
+server.use(expressSession({
+	secret: 'aaa',
+	resave: true,
+	rolling: true,
+	saveUninitialized: true,
+	cookie: {
+		maxAge: 20*3600*1000
+	}
+}));
 
 // post数据
 server.use(bodyParser.urlencoded({extended: false}));
@@ -40,24 +49,13 @@ server.engine('html', consolidate.ejs);
 // create SQL connoetion
 const db = mysql.createPool({host: 'localhost', port: '3306', user: 'root', password: '327681', database: 'blog'}) ;
 
+// 访问网址时跳转到首页
 server.get('/', (req, res) => {
-	db.query('SELECT *FROM user_table;', (err, data) => {
-		if (err) {
-			res.send(err).end();
-		}else if ( data == []){
-			
-			res.send('没有该用户，请注册');
-			
-		}else {
-			res.render('index.ejs', {user_data: data});
-			// console.log(data);
-			res.end();
-		}
-	})
+	res.redirect('/index');
 });
 
 
-
+// 首页
 server.get('/index', (req, res, next) => {
 	const GET = URL.parse(req.url, true).query;
 	let sqlStr = 'SELECT *FROM user_table;';
@@ -90,61 +88,8 @@ server.get('/index', (req, res) => {
 });
 
 
-// let name = '';
-// let zwname = '';
-// server.use('/loginCheck', (req, res, next) => {
-// 	const GET = URL.parse(req.url, true).query;
-// 	let sqlStr = 'SELECT *FROM user_table WHERE username="'+GET.username+'";';
-// 	db.query(sqlStr, (err, data) => {
-// 		if (err) {
-// 			console.log(err);
-// 			res.send(err).end();
-// 		}else {
-// 			if (data == false) {
-// 				res.send('该用户不存在');
-// 			}else {
-// 				if (data[0].password !== GET.password) {
-// 					res.send('用户名或密码错误请重新输入');
-// 				}else {
-// 					res.send(data[0].username);
-// 					name = encodeURI(data[0].username);
-// 					zwname = data[0].username;
-// 					console.log(name);
-// 					next();
-// 				}
-// 			}
-// 		}
-// 	});
-// });
-// server.get('/index?id='+zwname, (req, res) => {
-// 	const GET = URL.parse(req.url, true).query;
-// 	let sqlStr = 'SELECT *FROM user_table WHERE username="'+name+'";';
-// 	db.query(sqlStr, (err, data) => {
-// 		if (err) {
-// 			console.log(err);
-// 			res.send(err).end();
-// 		}else {
-// 			res.render('index.ejs', {user_data: data});
-// 			console.log(111331);
-// 		}
-// 	});
-// });
-// server.get('/index?id='+name, (req, res) => {
-// 	const GET = URL.parse(req.url, true).query;
-// 	let sqlStr = 'SELECT *FROM user_table WHERE username="'+name+'";';
-// 	db.query(sqlStr, (err, data) => {
-// 		if (err) {
-// 			console.log(err);
-// 			res.send(err).end();
-// 		}else {
-// 			res.render('index.ejs', {user_data: data});
-// 			console.log(1111);
-// 		}
-// 	});
-// });
-// 
 
-
+// 文章页
 server.get('/artical', (req, res, next) => {
 	db.query('SELECT *FROM artical_table WHERE author="'+URL.parse(req.url, true).query.id+'";', (err, data) => {
 		if (err) {
@@ -165,40 +110,36 @@ server.get('/artical', (req, res) => {
 		}
 	})
 });
-// server.get('/me', (req, res) => {
-// 	db.query('SELECT *FROM user_table;', (err, data) => {
-// 		if (err) {
-// 			res.send(err).end();
-// 		}else {
-// 			res.render('me.ejs', {user_data: data});
-// 			
-// 		}
-// 	})
-// });
-// 
 
-server.get('/login.html', (req, res) => {
-	res.render('login.ejs', {})
-	// console.log(req);
+// 注册页
+
+server.get('/regist', require('./routes/regist.js')());
+
+
+// 登录页
+
+server.get('/login', (req, res) => {
+		res.render('login.ejs', {});
 });
-server.get('/me', (req, res) => {
-	db.query('SELECT *FROM user_table WHERE username="'+URL.parse(req.url, true).query.username+'";', (err, data) => {
-		if (err) {
-			res.send(err).end();
-		}else {
-			console.log(data);
-			console.log(URL.parse(req.url, true).query);
-			res.render('me.ejs', {user_data: data});
-			
-			
-		}
-	});
-});
+
+server.post('/login', require('./routes/login.js')());
+
+
+// 我的页
+
+server.get('/me', require('./routes/me.js')());
+
+
+
+
+
+
+
+
 
 
 
 
 // 读取静态文件
-
 
 server.use(readStaticFile('./www'));
