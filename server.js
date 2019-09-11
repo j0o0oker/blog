@@ -58,7 +58,7 @@ server.get('/', (req, res) => {
 // 首页
 server.get('/index', (req, res, next) => {
 	const GET = URL.parse(req.url, true).query;
-	let sqlStr = 'SELECT *FROM user_table;';
+	let sqlStr = 'SELECT *FROM user_table WHERE ID<4;';
 	db.query(sqlStr, (err, data) => {
 		if (err) {
 			console.log(err);
@@ -88,8 +88,7 @@ server.get('/index', (req, res) => {
 });
 
 
-
-// 文章页
+// 文章详情页
 server.get('/artical', (req, res, next) => {
 	db.query('SELECT *FROM artical_table WHERE author="'+URL.parse(req.url, true).query.id+'";', (err, data) => {
 		if (err) {
@@ -111,9 +110,43 @@ server.get('/artical', (req, res) => {
 	})
 });
 
+
+// 写文章页
+
+server.get('/write', (req, res) => {
+		res.render('write.ejs');
+});
+server.post('/write', (req, res) => {
+	if(req.session.user_id !== undefined) {
+		console.log(req);
+		if (req.body.title == '' || req.body.content =='') {
+			res.status('400').send('标题和内容不能为空').end();
+		} else {
+			db.query(`INSERT INTO artical_table (author, title, content) VALUES (${req.session.user_id}, ${req.body.title}, ${req.body.content})`, (err, data) => {
+				if (err) {
+					res.status('400').send('databass err').end();
+				} else {
+					res.send('发表成功');
+				}
+			});
+		}
+	} else {
+		res.status('400').send('您还没有登陆').end();
+	}
+});
+
+
+
+
+
+
 // 注册页
 
-server.get('/regist', require('./routes/regist.js')());
+server.get('/regist', (req, res) => {
+	res.render('regist.ejs');
+});
+
+server.post('/regist', require('./routes/regist.js')());
 
 
 // 登录页
@@ -129,6 +162,17 @@ server.post('/login', require('./routes/login.js')());
 
 server.get('/me', require('./routes/me.js')());
 
+
+// 我的文章
+server.get('/me/myArticle', (req, res) => {
+	db.query(`SELECT * FROM artical_table WHERE author=${req.session.user_id};`, (err, data) => {
+		if (err) {
+			res.status('400').send('database error').end();
+		} else {
+			res.render('myArticle.ejs',{my_article: data});
+		}
+	});
+});
 
 
 

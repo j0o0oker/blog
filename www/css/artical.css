@@ -29,12 +29,13 @@
 	margin: 10px;
 }
 .author-info .another-info  {
-	flex: 0 0 10px;
+	flex: 0 0 110px;
 	align-self: flex-start;
 	margin: 10px;
-	margin-left: -55%;
+	margin-left: -40%;
 	
 }
+
 .author-info .attention {
 	flex: 0 0 50px;
 	margin: 10px;
@@ -48,6 +49,7 @@
 	border-radius: 3px;
 	color: #EC0041;
 }
+
 .footer {
 	position: absolute;
 	left: 0;

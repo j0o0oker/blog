@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<table border="1" width="100%">
+				<tr>
+					<th>标题</th>
+					<th>内容</th>
+					<th>操作</th>
+				</tr>
+				<% for(let i=0;i<my_article.length;i++) { %>
+				<tr>
+					<td><%= my_article[i].title%></td>
+					<td><%= my_article[i].content%></td>
+					<td>
+						<button type="button">查看</button>
+						<button type="button">修改</button>
+						<button type="button">删除</button>
+					</td>
+				</tr>
+				<% } %>
+		</table>
+	</body>
+</html>

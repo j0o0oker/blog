@@ -9,7 +9,6 @@ module.exports = function () {
 				if (err) {
 					res.send(err).end();
 				}else {
-					console.log(data);
 					res.render('me.ejs', {user_data: data});
 				}
 			});
