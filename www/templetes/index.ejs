@@ -6,6 +6,8 @@
 		<link rel="stylesheet" href="../css/reset.css">
 		<link rel="stylesheet" href="../css/common.css">
 		<link rel="stylesheet" href="../css/index.css">
+		<script src="../js/jquery-1.11.1.js"></script>
+		<!-- <script src="../js/index.js"></script> -->
 	</head>
 	<body>
 		<div class="header">
@@ -20,27 +22,28 @@
 			</ul>
 		</div>
 		<div class="banner">
-			<img width="100%" src="../images/banner/1.jpg" alt="">
-		<!-- 	<img width="100%" src="../images/banner/2.jpg" alt="">
-			<img width="100%" src="../images/banner/3.jpg" alt="">
-			<img width="100%" src="../images/banner/4.jpg" alt="">
-			<img width="100%" src="../images/banner/5.jpg" alt="">
-			<img width="100%" src="../images/banner/6.jpg" alt=""> -->
+			<img class="banner-item" width="100%" src="../images/banner/1.jpg" alt="">
+			<img class="banner-item" width="100%" src="../images/banner/2.jpg" alt="">
+			<img class="banner-item" width="100%" src="../images/banner/3.jpg" alt="">
+			<img class="banner-item" width="100%" src="../images/banner/4.jpg" alt="">
+			<img class="banner-item" width="100%" src="../images/banner/5.jpg" alt="">
+			<img class="banner-item" width="100%" src="../images/banner/6.jpg" alt="">
 		</div>
 		<div class="article-list">
 			<% for(let i =0;i<user_data.length;i++){%>
 			<li class="article">
 				<span class="title"><%= artical_data[i].title%></span>
-				<a href="/artical?id=<%= artical_data[i].author%>">
+				<a href="/artical?id=<%= artical_data[i].ID%>&&user=<%= artical_data[i].author%>">
 					<p class="attract"><%= artical_data[i].attract%></p>
 				</a>
 				
 				<div class="artical-info">
 					<img class="author-avator" src="<%= user_data[i].avator_src %>" alt="">
 					<span class="author-id"><%= user_data[i].username %></span>
-					<span class="publish-time">时间</span>
-					<span class="watch-times">查看数</span>
-					<span class="comment-times">评论数</span>
+					<span class="publish-time"><%= artical_data[i].time%></span>
+					<span class="watch-times">查看数1</span>
+					<span class="comment-times">评论数2</span>
+					<span class="like-times">赞2</span>
 				</div>
 			</li>
 			<% } %>

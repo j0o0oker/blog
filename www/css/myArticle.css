@@ -1,0 +1,48 @@
+.header {
+	display: flex;
+	height: 35px;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 10px 0 10px;
+	background-color: #f0f0f0;
+}
+.header a {
+	color: #000000;
+}
+.article-list {
+	margin: 10px;
+	color: #868686;
+}
+.article-list .article-item {
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #ccc;
+}
+.article-list .article-item .title {
+	display: block;
+	font-size: 18px;
+}
+.article-list .article-item .content {
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	color: #aaa;
+}
+.article-list .article-item .another-do {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	margin-top: 10px;
+}
+.article-list .article-item .another-do button {
+	width: 50px;
+	height: 20px;
+	font-size: 12px;
+	border: none;
+	background-color: #3F77F4;
+	color: #fff;
+}
+.article-list .article-item .another-do .del {
+	background-color: #df2f2f;
+}

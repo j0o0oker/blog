@@ -1,13 +1,16 @@
+
+
+
 .tab {
-	position: absolute;
+	position: fixed;
 	left: 0;
 	bottom: 0;
 	width: 100%;
 	height: 35px;
-	background-color: #f0f0f0;
+	background-color: #FF2A00;
 }
 .tab a {
-	color: #000000;
+	color: #fff;
 }
 .tab .box {
 	float: left;
@@ -17,5 +20,5 @@
 	color: ##222124;;
 }
 .tab .box:hover {
-	background-color: #fff;
+	background-color: #B4BCCC;
 }

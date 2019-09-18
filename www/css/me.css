@@ -6,8 +6,18 @@
 	height: 200px;
 	background-color: #4DC71F;
 }
+.header .ex-avator {
+	width: 70px;
+	height: 70px;
+	margin-bottom: 10px;
+	border-radius: 50%;
+	border: none;
+	line-height: 70px;
+	text-align: center;
+	color: #b0a7a7;
+	background-color: #ccc;
+}
 .header .avator {
-	flex: 0 0 70px;
 	width: 70px;
 	height: 70px;
 	margin-bottom: 10px;
@@ -30,7 +40,8 @@
 	text-align: center;
 	color: #F0F0F0;
 }
-.content {
+.content a{
+	color: #000000;
 }
 .content .another_do .do {
 	width: 100%;

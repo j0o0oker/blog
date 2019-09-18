@@ -5,8 +5,11 @@ const db = mysql.createPool({host: 'localhost', port: '3306', user: 'root', pass
 let router = express.Router();
 module.exports = function () {
 	
+	router.get('/', (req, res) => {
+			res.render('login.ejs', {});
+	});
 	
-	router.post('/login', (req, res) => {
+	router.post('/', (req, res) => {
 		db.query('SELECT * FROM user_table WHERE username="'+req.body.username+'";', (err, data) => {
 			if (err) {
 				res.status('400').send('database err');

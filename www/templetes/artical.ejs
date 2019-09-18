@@ -8,13 +8,13 @@
 	</head>
 	<body>
 		<div class="header">
-			<lable class="go-1"><a href="/index"><</a></lable>
+			<lable class="go-1" onclick="window.history.back(-1)">返回</lable>
 		</div>
 		<div class="artical-info">
 			<p class="title"><%= artical_data[0].title%></p>
-			<span>time</span>
+			<span><%= artical_data[0].time%></span>
 			<span>|</span>
-			<span>浏览量：num</span>
+			<span>浏览量：1</span>
 		</div>
 		<div class="author-info">
 			<div class="avator">

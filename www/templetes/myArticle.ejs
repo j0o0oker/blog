@@ -3,25 +3,42 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
+		<link rel="stylesheet" href="../css/reset.css">
+		<link rel="stylesheet" href="../css/common.css">
+		<link rel="stylesheet" href="../css/myArticle.css">
 	</head>
+	<script>
+		
+	
+	</script>
 	<body>
-		<table border="1" width="100%">
-				<tr>
-					<th>标题</th>
-					<th>内容</th>
-					<th>操作</th>
-				</tr>
-				<% for(let i=0;i<my_article.length;i++) { %>
-				<tr>
-					<td><%= my_article[i].title%></td>
-					<td><%= my_article[i].content%></td>
-					<td>
-						<button type="button">查看</button>
-						<button type="button">修改</button>
-						<button type="button">删除</button>
-					</td>
-				</tr>
+		<div class="header">
+			<a class="go-1" href="/me">返回</a>
+		</div>
+			<ul class="article-list">
+				<% if(my_articles == false) { %> 
+				<p>空空如也</p>
+				<% }else{ %>
+					<% for(let i=0;i<my_articles.length;i++) {%>
+						<li class="article-item">
+							<span class="title"><%= my_articles[i].title%></span>
+							<a href="/artical?id=<%= my_articles[i].ID%>&&user=<%= my_articles[i].author%>">
+								<span class="content"><%= my_articles[i].content%></span>
+							</a>
+							<div class="another-do">
+								<span class="time"><%= my_articles[i].time%></span>
+								<span class="like">赞1</span>
+								<span class="comment">评论2</span>
+								<button class="mod">
+									<a href="/me/myArticle?act=mod&&id=<%= my_articles[i].ID%>">修改</a>
+								</button>
+								<button class="del">
+									<a href="/me/myArticle?act=del&&id=<%= my_articles[i].ID%>" onclick="return confirm('你确定要删除嘛~')">删除</a>
+								</button>
+							</div>
+						</li>
+					<% } %>
 				<% } %>
-		</table>
+			</ul>
 	</body>
 </html>
